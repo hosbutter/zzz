@@ -1,0 +1,495 @@
+<!-- LEFT (profile & totals) -->
+<div id="newLeft" role="region" aria-label="Profile and totals">
+  <div id="profileCard" role="article" aria-label="User profile card">
+    <div id="pfpContainer">
+      <img
+        src="assets/imgs/pfp.JPG"
+        alt="Profile picture of Ishi"
+        id="pfp"
+        loading="lazy"
+      />
+      <div id="statusIndicator" class="online" aria-hidden="true"></div>
+    </div>
+
+    <div id="profileInfo">
+      <div id="nameRow">
+        <span id="displayName">Ishi</span>
+        <span id="pronouns">They</span>
+      </div>
+
+      <div id="username">@kiki</div>
+
+      <a href="https://discord.gg/FW6qmfTzB" id="profileLink" role="link"
+        >Join Discord Serve r</a
+      >
+    </div>
+  </div>
+
+  <div id="totalsBox" role="region" aria-label="Totals">
+    <span id="totalsLabel">Totals</span>
+    <div id="totalsList">
+      <p class="totalsListItems">Achievements: 3</p>
+      <p class="totalsListItems">Play Time: 2.2h</p>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div id="newNav">
+  <div id="tabGroup" role="tablist" aria-label="Main tabs">
+    <button
+      type="button"
+      class="tabBtns active"
+      role="tab"
+      data-target="profile"
+      aria-controls="profile"
+      aria-selected="true"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="hero-15"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+        />
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="tabBtns"
+      role="tab"
+      data-target="library"
+      aria-controls="library"
+      aria-selected="false"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="hero-15"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"
+        />
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="tabBtns"
+      role="tab"
+      data-target="moments"
+      aria-controls="moments"
+      aria-selected="false"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="hero-15"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+        />
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="tabBtns"
+      role="tab"
+      data-target="wishlist"
+      aria-controls="wishlist"
+      aria-selected="false"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="hero-15"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div id="newContent">
+  <div id="profile" class="tabContents active" role="tabpanel">
+    <div class="profileContainer">
+      <div class="profileBanner">
+        <img
+          src="assets/imgs/pfp.JPG"
+          alt="Banner image"
+          class="bannerImg"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="profileHeader">
+        <div class="pfpMainWrapper">
+          <img
+            src="assets/imgs/pfp.JPG"
+            alt="Profile avatar"
+            class="pfpMain"
+            loading="lazy"
+          />
+          <div class="statusDot online" aria-hidden="true"></div>
+        </div>
+
+        <div class="headerContent">
+          <div class="headerTop">
+            <h2 class="fullName">Ishi</h2>
+            <span class="userHandle">@kikyyyyyyyyyyyyy</span>
+          </div>
+          <div class="statusNote">
+            <span class="noteBubble"
+              ><span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸
+              🎧</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT & HIGHLIGHTS -->
+      <div class="profileBody">
+        <div class="aboutMe">
+          <h3>About Me</h3>
+          <p>
+            Cosplayer, gamer, and lover of all things pastel and neon. ⚡🌸
+            Welcome to my digital space!
+          </p>
+        </div>
+
+        <div class="highlightsSection">
+          <h3>Highlights</h3>
+          <div class="highlightsScroll">
+            <div class="highlightItems">
+              <div class="highlightCircles">
+                <img
+                  src="assets/imgs/pfp.JPG"
+                  alt="Cosplay highlight"
+                  loading="lazy"
+                />
+              </div>
+              <span>Cosplay</span>
+            </div>
+            <div class="highlightItems">
+              <div class="highlightCircles">
+                <img
+                  src="assets/imgs/pfp.JPG"
+                  alt="Events highlight"
+                  loading="lazy"
+                />
+              </div>
+              <span>Events</span>
+            </div>
+            <div class="highlightItems">
+              <div class="highlightCircles">
+                <img
+                  src="assets/imgs/pfp.JPG"
+                  alt="Gaming highlight"
+                  loading="lazy"
+                />
+              </div>
+              <span>Gaming</span>
+            </div>
+            <div class="highlightItems">
+              <div class="highlightCircles">
+                <img
+                  src="assets/imgs/pfp.JPG"
+                  alt="Food highlight"
+                  loading="lazy"
+                />
+              </div>
+              <span>Food</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rotationSection">
+      <div class="rotationHeader">
+        <h2 class="sectionTitle">CURRENT ROTATION</h2>
+        <div class="sliderNav">
+          <button type="button" class="navBtns" data-action="prev">PREV</button>
+          <button type="button" class="navBtns" data-action="next">NEXT</button>
+        </div>
+      </div>
+      <div id="sliderWindow">
+        <div id="sliderRail" class="sliderRail">
+          <!-- <div class="gameCards"></div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ROTATION -->
+    <!-- <div class="rotationSection">
+      <div class="rotationHeader">
+        <h2 class="sectionTitle">CURRENT ROTATION</h2>
+        <div class="sliderNav">
+          <button type="button" class="navBtns" data-action="prev">PREV</button>
+          <button type="button" class="navBtns" data-action="next">NEXT</button>
+        </div>
+      </div>
+      <div id="sliderWindow">
+        <div id="sliderRail" class="sliderRail">
+          <div class="gameCards active">
+            <div
+              class="cardBanner"
+              style="background-image: url(assets/imgs/pfp.JPG)"
+            ></div>
+            <div class="cardBody">
+              <span class="genreChip">COMPETITIVE</span>
+              <h3>Elden Ring</h3>
+            </div>
+          </div>
+          <div class="gameCards">
+            <div
+              class="cardBanner"
+              style="background-image: url(assets/imgs/pfp.JPG)"
+            ></div>
+            <div class="cardBody">
+              <span class="genreChip">VISUAL NOVEL</span>
+              <h3>Hades</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- DASHBOARD -->
+    <div class="gamingDashboard">
+      <div class="statsGrid">
+        <div class="statCards">
+          <span class="statLabel">Total Playtime</span>
+          <div class="statValues" id="totalHours">0h</div>
+        </div>
+        <div class="statCards">
+          <span class="statLabel">Daily Average</span>
+          <div class="statValues" id="avgHours">0h</div>
+        </div>
+        <div class="statCards highlight">
+          <span class="statLabel">Peak Session</span>
+          <div class="statValues" id="peakHours">0h</div>
+        </div>
+      </div>
+
+      <div class="graphWrapper">
+        <div class="graphHeader">
+          <h3>Yearly Activity</h3>
+          <div class="graphLegend">
+            <span>0h</span>
+            <div class="square level1"></div>
+            <div class="square level2"></div>
+            <div class="square level3"></div>
+            <div class="square level4"></div>
+            <span>10h+</span>
+          </div>
+        </div>
+
+        <div id="sessionGraph" class="sessionGraph"></div>
+      </div>
+    </div>
+
+    <div id="favoritesContainer">
+      <div class="favoritesHeroes">
+        <h1 class="heroTitle">Hall of Fame</h1>
+        <p class="heroSubtitle">
+          A curated collection of my top-tier experiences.
+        </p>
+      </div>
+
+      <div id="favGrid"></div>
+    </div>
+  </div>
+
+  <!-- LIBRARY TAB -->
+  <div id="library" class="tabContents">
+    <div class="libraryContainer">
+      <h1 class="heroTitle">Game Library</h1>
+      <p class="heroSubtitle">Games I play and own.</p>
+      <div class="libraryHeader">
+        <div class="tableControls">
+          <div class="sortGroup">
+            <button class="sortBtn" data-sort="time">Sort by Time</button>
+            <button class="sortBtn" data-sort="progress">
+              Sort by Progress
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <table class="gameTable" id="game-library-table">
+        <thead>
+          <tr>
+            <th>Game Name</th>
+            <th>Playtime</th>
+            <th>Achievements</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-platform="steam" data-time="240" data-progress="85">
+            <td class="gameCell" data-label="Game">
+              <img src="assets/imgs/pfp.JPG" class="gameMiniIcon" /><span
+                >Elden Ring</span
+              >
+            </td>
+            <td data-label="Playtime">240h</td>
+            <td data-label="Progress" class="progressCell">
+              <div class="progressWrappers">
+                <div class="progressBarBg">
+                  <div class="progressFills pink" style="width: 85%"></div>
+                </div>
+                <span class="progressText">36/42</span>
+              </div>
+            </td>
+          </tr>
+          <tr data-platform="riot" data-time="500" data-progress="1">
+            <td class="gameCell" data-label="Game">
+              <img src="assets/imgs/pfp.JPG" class="gameMiniIcon" /><span
+                >The House in Fata Morgana</span
+              >
+            </td>
+            <td data-label="Playtime">500h</td>
+            <td data-label="Progress" class="progressCell">
+              <div class="progressWrappers">
+                <div class="progressBarBg">
+                  <div class="progressFills pink" style="width: 15%"></div>
+                </div>
+                <span class="progressText">1/100</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- MOMENTS TAB -->
+  <div id="moments" class="tabContents">
+    <div class="gallerySection">
+      <div class="favoritesHeroes">
+        <h1 class="heroTitle">Media Vault</h1>
+        <p class="heroSubtitle">Simple collection of screenshots and clips.</p>
+      </div>
+
+      <div class="simpleMediaGrid">
+        <div class="mediaItems">
+          <img src="assets/imgs/pfp.JPG" alt="Screenshot" />
+          <div class="mediaLabel">Screenshot</div>
+        </div>
+
+        <div class="mediaItems">
+          <iframe
+            src="https://www.youtube.com/embed/VIDEO_ID"
+            frameborder="0"
+            title="YouTube clip"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+            "
+            allowfullscreen
+          ></iframe>
+          <div class="mediaLabel">YouTube Clip</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WISHLIST TAB -->
+  <div id="wishlist" class="tabContents">
+    <div class="wishlistContainer">
+      <div class="favoritesHeroes">
+        <h1 class="heroTitle">Wishlist</h1>
+        <p class="heroSubtitle">Games and gear I'm currently eyeing.</p>
+      </div>
+
+      <div class="wishlistGrid">
+        <div class="wishCards priorityMed">
+          <div class="wishImage">
+            <img src="assets/imgs/pfp.JPG" alt="GTA VI" />
+            <div class="priceTag">$69.99</div>
+          </div>
+          <div class="wishInfo">
+            <div class="wishHeader">
+              <h4>Grand Theft Auto VI</h4>
+            </div>
+            <p class="wishStatus">Release: Fall 2025</p>
+            <a
+              href="#"
+              class="wishLink"
+              target="_blank"
+              rel="noopener noreferrer"
+              >View on Store</a
+            >
+          </div>
+        </div>
+
+        <div class="wishCards priorityMed">
+          <div class="wishImage">
+            <img src="assets/imgs/pfp.JPG" alt="RTX 5080" />
+            <div class="priceTag">TBA</div>
+          </div>
+          <div class="wishInfo">
+            <div class="wishHeader">
+              <h4>RTX 5080 GPU</h4>
+            </div>
+            <p class="wishStatus">Waiting for Benchmarks</p>
+            <a
+              href="#"
+              class="wishLink"
+              target="_blank"
+              rel="noopener noreferrer"
+              >View Details</a
+            >
+          </div>
+        </div>
+
+        <div class="wishCards priorityMed">
+          <div class="wishImage">
+            <img src="assets/imgs/pfp.JPG" alt="Hades II" />
+            <div class="priceTag">$29.99</div>
+          </div>
+          <div class="wishInfo">
+            <div class="wishHeader">
+              <h4>Hades II</h4>
+            </div>
+            <p class="wishStatus">Waiting for Sale</p>
+            <a
+              href="#"
+              class="wishLink"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Steam Link</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
