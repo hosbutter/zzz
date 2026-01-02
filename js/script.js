@@ -302,34 +302,29 @@ function initLibraryFilters() {
 
 
 
-async function initLanyard(userId) {
-  const statusDot = document.getElementById("statusIndicator");
-  const profileLink = document.getElementById("profileLink");
-
-  if (!statusDot) return;
+async function initLanyard() {
+  const userId = '1434366878427385886'; 
+  const dot = document.getElementById("statusIndicator");
+  if (!dot) return;
 
   try {
-    const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
-    const { data } = await response.json();
-
-    // 1. Update Status Dot Color
-    // Lanyard returns: online, idle, dnd, or offline
-    const status = data.discord_status;
-    statusDot.className = status; // Replaces 'online' with the actual status
-
-    // 2. Optional: Update "Listening to..." note if you are on Spotify
-    if (data.listening_to_spotify) {
-       console.log(`Ishi is vibing to: ${data.spotify.song}`);
-       // You could inject this into your #profileStatusNote if you wanted!
+    const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
+    const json = await res.json();
+    
+    if (json.success && json.data) {
+      const status = json.data.discord_status; // 'online', 'idle', 'dnd', 'offline'
+      
+      // Clean up old classes and add the new one
+      dot.classList.remove('online', 'idle', 'dnd', 'offline');
+      dot.classList.add(status);
+      
+      console.log(`Lanyard Sync: ${status}`);
     }
-
   } catch (err) {
-    console.warn("Lanyard API connection failed:", err);
+    console.error("Lanyard error:", err);
+    dot.classList.add('offline');
   }
 }
-
-// Call it with your ID (Replace 'YOUR_DISCORD_ID' with your actual numbers)
-initLanyard('1434366878427385886');
 
 
 
