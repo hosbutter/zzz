@@ -577,36 +577,43 @@ async function initFavorites() {
 }
 
 
-
 async function initLanyard(userId) {
   const statusIndicator = document.getElementById("statusIndicator");
   const statusDot = document.getElementById("statusDot");
-
-  // If neither exists, stop the script
-  if (!statusIndicator && !statusDot) return;
+  const noteBubble = document.querySelector(".noteBubble");
 
   try {
     const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
     const { data } = await response.json();
-    const status = data.discord_status; // online, idle, dnd, or offline
+    
+    // 1. Update the two dots
+    const status = data.discord_status;
+    if (statusIndicator) statusIndicator.className = status;
+    if (statusDot) statusDot.className = status;
 
-    // Update the first dot if it exists
-    if (statusIndicator) {
-      statusIndicator.className = status;
-    }
-
-    // Update the second dot if it exists
-    if (statusDot) {
-      statusDot.className = status;
+    // 2. Update the Note Bubble (Activities)
+    if (noteBubble) {
+      if (data.listening_to_spotify) {
+        // Show Spotify status
+        noteBubble.innerHTML = `Listening to <b>${data.spotify.song}</b> by <b>${data.spotify.artist}</b>`;
+      } else if (data.activities && data.activities.length > 0) {
+        // Show the first non-Spotify activity (Game/App)
+        // We filter out custom statuses (type 4) to get actual games
+        const activity = data.activities.find(act => act.type !== 4) || data.activities[0];
+        noteBubble.innerHTML = `Playing <b>${activity.name}</b>`;
+      } else {
+        // Default text if doing nothing
+        noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
+      }
     }
 
   } catch (err) {
     console.warn("Lanyard API connection failed:", err);
-    // Optional: Set both to offline on error
-    if (statusIndicator) statusIndicator.className = "offline";
     if (statusDot) statusDot.className = "offline";
+    if (noteBubble) noteBubble.innerHTML = "Offline";
   }
 }
+
 
 
 
