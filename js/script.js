@@ -250,51 +250,6 @@ async function initLibrary() {
 }
 
 
-
-async function initLibrary() {
-  const tableBody = document.querySelector("#game-library-table tbody");
-  if (!tableBody) return;
-
-  try {
-    const response = await fetch("db/ocational/library.json");
-    const data = await response.json();
-
-    tableBody.innerHTML = data.map(game => {
-      const progressPercent = Math.round((game.achievements / game.totalAchievements) * 100);
-      
-      return `
-        <tr data-platform="${game.platform}" 
-            data-time="${game.playtime}" 
-            data-progress="${progressPercent}"
-            onclick="window.open('https://${game.link}', '_blank')"
-            style="cursor: pointer;">
-          <td class="gameCell" data-label="Game">
-            <img src="${game.img}" class="gameMiniIcon" alt="${game.name}" />
-            <span>${game.name}</span>
-          </td>
-          <td data-label="Playtime">${game.playtime}h</td>
-          <td data-label="Progress" class="progressCell">
-            <div class="progressWrappers">
-              <div class="progressBarBg">
-                <div class="progressFills pink" style="width: ${progressPercent}%"></div>
-              </div>
-              <span class="progressText">${game.achievements}/${game.totalAchievements}</span>
-            </div>
-          </td>
-        </tr>
-      `;
-    }).join('');
-
-    // Re-bind sort buttons
-    initLibraryFilters(); 
-
-  } catch (err) {
-    console.error("Library load failed:", err);
-  }
-}
-
-
-
 function initLibraryFilters() {
   const table =
     document.getElementById("gameLibraryTable") ||
