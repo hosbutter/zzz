@@ -211,7 +211,7 @@ async function initLibrary() {
   if (!tableBody) return;
 
   try {
-    const response = await fetch("db/ocational/library.json");
+    const response = await fetch("db/library.json");
     const data = await response.json();
 
     tableBody.innerHTML = data.map(game => {
