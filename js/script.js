@@ -223,7 +223,7 @@ async function initLibrary() {
             data-progress="${progressPercent}"
             onclick="window.open('https://${game.link}', '_blank')"
             style="cursor: pointer;">
-          <td class="gameCell" data-label="Game" onclick="window.open('https://${game.link}', '_blank')">
+          <td class="gameCell" data-label="Game">
             <img src="${game.img}" class="gameMiniIcon" alt="${game.name}" />
             <span>${game.name}</span>
           </td>
