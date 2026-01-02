@@ -620,6 +620,5 @@ function initPageSpecificScripts() {
   initTerminal();
   initFavorites();
   initLibrary();
-  debugLanyard();
   initLanyard('1434366878427385886');
 }
