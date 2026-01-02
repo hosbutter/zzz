@@ -560,6 +560,13 @@ body {
   background-color: #00ffe1;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
+
+
+#statusDot.online  { background-color: #00ffe1 !important;  }
+#statusDot.idle    { background-color: #f0b232 !important; }
+#statusDot.dnd     { background-color: #f23f43 !important; }
+#statusDot.offline { background-color: #80848e !important; }
+
 .noteBubble {
   background: #b2f7ef;
   padding: 6px 12px;
