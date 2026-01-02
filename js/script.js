@@ -243,12 +243,12 @@ async function initLibrary() {
         return `
         <tr data-platform="${game.platform}" 
             data-time="${game.playtime}" 
-            data-progress="${progressPercent" style="cursor: pointer;">
+            data-progress="${progressPercent}"
+            onclick="window.open('https://${game.link}', '_blank')"
+            style="cursor: pointer;">
           <td class="gameCell" data-label="Game">
-                             <a href="${game.link}">
             <img src="${game.img}" class="gameMiniIcon" alt="${game.name}" />
             <span>${game.name}</span>
-            </a>
           </td>
           <td data-label="Playtime">${game.playtime}h</td>
           <td data-label="Progress" class="progressCell">
