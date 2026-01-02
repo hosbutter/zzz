@@ -578,47 +578,35 @@ async function initFavorites() {
 
 
 
-
-
 async function initLanyard(userId) {
   const statusIndicator = document.getElementById("statusIndicator");
   const statusDot = document.getElementById("statusDot");
-  const profileLink = document.getElementById("profileLink");
 
-  if (!statusIndicator) return;
+  // If neither exists, stop the script
+  if (!statusIndicator && !statusDot) return;
 
   try {
     const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
     const { data } = await response.json();
+    const status = data.discord_status; // online, idle, dnd, or offline
 
-    // 1. Update Status Dot Color
-    // Lanyard returns: online, idle, dnd, or offline
-    const status = data.discord_status;
-    statusDot.className = status; // Replaces 'online' with the actual status
+    // Update the first dot if it exists
+    if (statusIndicator) {
+      statusIndicator.className = status;
+    }
+
+    // Update the second dot if it exists
+    if (statusDot) {
+      statusDot.className = status;
+    }
 
   } catch (err) {
     console.warn("Lanyard API connection failed:", err);
+    // Optional: Set both to offline on error
+    if (statusIndicator) statusIndicator.className = "offline";
+    if (statusDot) statusDot.className = "offline";
   }
-
-  
-  if (!statusDot) return;
-  
-  try {
-      const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
-      const { data } = await response.json();
-  
-      // 1. Update Status Dot Color
-      // Lanyard returns: online, idle, dnd, or offline
-      const status = data.discord_status;
-      statusDot.className = status; // Replaces 'online' with the actual status
-  
-    } catch (err) {
-      console.warn("Lanyard API connection failed:", err);
-    }
-  
 }
-
-// Call it with your ID (Replace 'YOUR_DISCORD_ID' with your actual numbers)
 
 
 
