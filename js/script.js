@@ -295,6 +295,50 @@ function initLibraryFilters() {
   }
 }
 
+
+
+
+
+
+
+
+async function initLanyard(userId) {
+  const statusDot = document.getElementById("statusIndicator");
+  const profileLink = document.getElementById("profileLink");
+
+  if (!statusDot) return;
+
+  try {
+    const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
+    const { data } = await response.json();
+
+    // 1. Update Status Dot Color
+    // Lanyard returns: online, idle, dnd, or offline
+    const status = data.discord_status;
+    statusDot.className = status; // Replaces 'online' with the actual status
+
+    // 2. Optional: Update "Listening to..." note if you are on Spotify
+    if (data.listening_to_spotify) {
+       console.log(`Ishi is vibing to: ${data.spotify.song}`);
+       // You could inject this into your #profileStatusNote if you wanted!
+    }
+
+  } catch (err) {
+    console.warn("Lanyard API connection failed:", err);
+  }
+}
+
+// Call it with your ID (Replace 'YOUR_DISCORD_ID' with your actual numbers)
+initLanyard('1434366878427385886');
+
+
+
+
+
+
+
+
+
 // --- Tab Logic (with LocalStorage) ---
 function initInternalTabs() {
   const tabs = document.querySelectorAll(".tabBtns");
@@ -570,4 +614,5 @@ function initPageSpecificScripts() {
   initTerminal();
   initFavorites();
   initLibrary();
+  initLanyard();
 }
