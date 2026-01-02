@@ -206,19 +206,41 @@ async function initSessionGraph() {
 
 
 
+
+
+
 async function initLibrary() {
   const tableBody = document.querySelector("#game-library-table tbody");
+  const totalsList = document.querySelector("#totalsList"); // Select the totals container
   if (!tableBody) return;
 
   try {
     const response = await fetch("db/library.json");
     const data = await response.json();
 
-    tableBody.innerHTML = data.map(game => {
-      const progressPercent = Math.round((game.achievements / game.totalAchievements) * 100);
+    // 1. Calculate totals using reduce
+    const totals = data.reduce((acc, game) => {
+      acc.achievements += game.achievements || 0;
+      acc.playtime += game.playtime || 0;
+      return acc;
+    }, { achievements: 0, playtime: 0 });
 
-      
-      return `
+    // 2. Update the Totals HTML
+    if (totalsList) {
+      totalsList.innerHTML = `
+        <p class="totalsListItems">Achievements: ${totals.achievements}</p>
+        <p class="totalsListItems">Play Time: ${totals.playtime.toFixed(1)}h</p>
+      `;
+    }
+
+    // 3. Generate the Table Rows (Your existing logic)
+    tableBody.innerHTML = data
+      .map((game) => {
+        const progressPercent = game.totalAchievements > 0 
+          ? Math.round((game.achievements / game.totalAchievements) * 100) 
+          : 0;
+
+        return `
         <tr data-platform="${game.platform}" 
             data-time="${game.playtime}" 
             data-progress="${progressPercent}"
@@ -239,15 +261,66 @@ async function initLibrary() {
           </td>
         </tr>
       `;
-    }).join('');
+      })
+      .join("");
 
-    // Re-bind sort buttons
-    initLibraryFilters(); 
-
+    initLibraryFilters();
   } catch (err) {
     console.error("Library load failed:", err);
   }
 }
+
+
+
+
+
+
+
+
+
+
+// async function initLibrary() {
+//   const tableBody = document.querySelector("#game-library-table tbody");
+//   if (!tableBody) return;
+
+//   try {
+//     const response = await fetch("db/library.json");
+//     const data = await response.json();
+
+//     tableBody.innerHTML = data.map(game => {
+//       const progressPercent = Math.round((game.achievements / game.totalAchievements) * 100);
+
+      
+//       return `
+//         <tr data-platform="${game.platform}" 
+//             data-time="${game.playtime}" 
+//             data-progress="${progressPercent}"
+//             onclick="window.open('https://${game.link}', '_blank')"
+//             style="cursor: pointer;">
+//           <td class="gameCell" data-label="Game">
+//             <img src="${game.img}" class="gameMiniIcon" alt="${game.name}" />
+//             <span>${game.name}</span>
+//           </td>
+//           <td data-label="Playtime">${game.playtime}h</td>
+//           <td data-label="Progress" class="progressCell">
+//             <div class="progressWrappers">
+//               <div class="progressBarBg">
+//                 <div class="progressFills pink" style="width: ${progressPercent}%"></div>
+//               </div>
+//               <span class="progressText">${game.achievements}/${game.totalAchievements}</span>
+//             </div>
+//           </td>
+//         </tr>
+//       `;
+//     }).join('');
+
+//     // Re-bind sort buttons
+//     initLibraryFilters(); 
+
+//   } catch (err) {
+//     console.error("Library load failed:", err);
+//   }
+// }
 
 
 function initLibraryFilters() {
