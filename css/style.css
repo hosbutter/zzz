@@ -337,10 +337,10 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-#statusIndicator.online  { background-color: #00ffe1 !important;  }
-#statusIndicator.idle    { background-color: #f0b232 !important; }
-#statusIndicator.dnd     { background-color: #f23f43 !important; }
-#statusIndicator.offline { background-color: #80848e !important; }
+.online  { background-color: #00ffe1 !important;  }
+.idle    { background-color: #f0b232 !important; }
+.dnd     { background-color: #f23f43 !important; }
+.offline { background-color: #80848e !important; }
 
 
 #profileInfo {
@@ -562,10 +562,10 @@ body {
 }
 
 
-#statusDot.online  { background-color: #00ffe1 !important;  }
-#statusDot.idle    { background-color: #f0b232 !important; }
-#statusDot.dnd     { background-color: #f23f43 !important; }
-#statusDot.offline { background-color: #80848e !important; }
+.online  { background-color: #00ffe1 !important;  }
+.idle    { background-color: #f0b232 !important; }
+.dnd     { background-color: #f23f43 !important; }
+.offline { background-color: #80848e !important; }
 
 .noteBubble {
   background: #b2f7ef;
