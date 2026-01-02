@@ -581,10 +581,11 @@ async function initFavorites() {
 
 
 async function initLanyard(userId) {
-  const statusDot = document.getElementById("statusIndicator");
+  const statusIndicator = document.getElementById("statusIndicator");
+  const statusDot = document.getElementById("statusDot");
   const profileLink = document.getElementById("profileLink");
 
-  if (!statusDot) return;
+  if (!statusIndicator) return;
 
   try {
     const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
@@ -595,15 +596,26 @@ async function initLanyard(userId) {
     const status = data.discord_status;
     statusDot.className = status; // Replaces 'online' with the actual status
 
-    // 2. Optional: Update "Listening to..." note if you are on Spotify
-    if (data.listening_to_spotify) {
-       console.log(`Ishi is vibing to: ${data.spotify.song}`);
-       // You could inject this into your #profileStatusNote if you wanted!
-    }
-
   } catch (err) {
     console.warn("Lanyard API connection failed:", err);
   }
+
+  
+  if (!statusDot) return;
+  
+  try {
+      const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
+      const { data } = await response.json();
+  
+      // 1. Update Status Dot Color
+      // Lanyard returns: online, idle, dnd, or offline
+      const status = data.discord_status;
+      statusDot.className = status; // Replaces 'online' with the actual status
+  
+    } catch (err) {
+      console.warn("Lanyard API connection failed:", err);
+    }
+  
 }
 
 // Call it with your ID (Replace 'YOUR_DISCORD_ID' with your actual numbers)
