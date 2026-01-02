@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Elden Ring",
+    "img": "assets/imgs/pfp.JPG",
+    "playtime": 240,
+    "achievements": 36,
+    "totalAchievements": 42,
+    "platform": "steam",
+    "link": "steam.com"
+  },
+  {
+    "name": "The House in Fata Morgana",
+    "img": "assets/imgs/pfp.JPG",
+    "playtime": 500,
+    "achievements": 1,
+    "totalAchievements": 100,
+    "platform": "riot",
+    "link": "steam.com"
+  }
+]
