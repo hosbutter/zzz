@@ -578,7 +578,7 @@ async function initFavorites() {
 
 
 async function debugLanyard() {
-  const userId = '300057114674036737'; // Your Discord ID
+  const userId = '1434366878427385886'; // Your Discord ID
   
   try {
     const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
