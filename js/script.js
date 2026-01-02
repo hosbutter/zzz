@@ -614,5 +614,4 @@ function initPageSpecificScripts() {
   initTerminal();
   initFavorites();
   initLibrary();
-  initLanyard();
 }
