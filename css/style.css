@@ -337,10 +337,10 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-#statusIndicator.online { background-color: #00ffe1; }
-#statusIndicator.idle   { background-color: #f0b232; }
-#statusIndicator.dnd    { background-color: #f23f43; }
-#statusIndicator.offline{ background-color: #80848e; }
+#statusIndicator.online  { background-color: #23a55a !important; }
+#statusIndicator.idle    { background-color: #f0b232 !important; }
+#statusIndicator.dnd     { background-color: #f23f43 !important; }
+#statusIndicator.offline { background-color: #80848e !important; }
 
 
 #profileInfo {
