@@ -610,7 +610,7 @@ async function initLanyard(userId) {
   } catch (err) {
     console.warn("Lanyard API connection failed:", err);
     if (statusDot) statusDot.className = "offline";
-    if (noteBubble) noteBubble.innerHTML = "Offline";
+    if (noteBubble) noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
   }
 }
 
