@@ -216,6 +216,7 @@ async function initLibrary() {
 
     tableBody.innerHTML = data.map(game => {
       const progressPercent = Math.round((game.achievements / game.totalAchievements) * 100);
+
       
       return `
         <tr data-platform="${game.platform}" 
