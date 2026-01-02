@@ -302,29 +302,6 @@ function initLibraryFilters() {
 
 
 
-async function initLanyard() {
-  const userId = '1434366878427385886'; 
-  const dot = document.getElementById("statusIndicator");
-  if (!dot) return;
-
-  try {
-    const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
-    const json = await res.json();
-    
-    if (json.success && json.data) {
-      const status = json.data.discord_status; // 'online', 'idle', 'dnd', 'offline'
-      
-      // Clean up old classes and add the new one
-      dot.classList.remove('online', 'idle', 'dnd', 'offline');
-      dot.classList.add(status);
-      
-      console.log(`Lanyard Sync: ${status}`);
-    }
-  } catch (err) {
-    console.error("Lanyard error:", err);
-    dot.classList.add('offline');
-  }
-}
 
 
 
@@ -599,6 +576,38 @@ async function initFavorites() {
   }
 }
 
+
+async function debugLanyard() {
+  const userId = '300057114674036737'; // Your Discord ID
+  
+  try {
+    const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
+    const json = await response.json();
+    
+    // --- THIS PRINTS THE ENTIRE DATA OBJECT TO YOUR CONSOLE ---
+    console.log("Full Lanyard API Response:", json);
+
+    // You can also print specific parts to make it easier to read:
+    if (json.success) {
+      console.log("Current Status:", json.data.discord_status);
+      console.log("Active Activities:", json.data.activities);
+      
+      if (json.data.listening_to_spotify) {
+        console.log("Currently Listening to:", json.data.spotify.song);
+      }
+    } else {
+      console.error("Lanyard returned success: false. Check your User ID.");
+    }
+
+  } catch (err) {
+    console.error("Failed to connect to Lanyard API:", err);
+  }
+}
+
+// Call the function to see the output
+debugLanyard();
+
+
 // --- Controller for Page-Specific Scripts ---
 function initPageSpecificScripts() {
   initInternalTabs();
@@ -609,4 +618,5 @@ function initPageSpecificScripts() {
   initTerminal();
   initFavorites();
   initLibrary();
+  debugLanyard();
 }
