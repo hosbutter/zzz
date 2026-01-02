@@ -1,0 +1,16 @@
+[
+  {
+    "link": "steam.com",
+    "img": "assets/imgs/pfp.JPG",
+    "name": "Hades",
+    "genre": 1,
+    "categories": "Gothic / Psychological"
+  },
+  {
+    "link": "steam.com",
+    "img": "assets/imgs/pfp.JPG",
+    "name": "Elden Ring",
+    "genre": 2,
+    "categories": "Tactical Shooter / Global Elite"
+  }
+]
