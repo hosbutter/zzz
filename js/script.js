@@ -669,14 +669,16 @@ async function initLanyard(userId) {
       if (data.listening_to_spotify) {
         // Show Spotify status
         noteBubble.innerHTML = `Listening to <b>${data.spotify.song}</b> by <b>${data.spotify.artist}</b>`;
-      } else if (activity && activity.id === "custom") {
-  // Using the state from the JSON to keep it dynamic
-        noteBubble.innerHTML = `<span style="font-size: 20px">${activity.emoji.name} </span>${activity.state.replace('\n', '<br />')}`;
       } else if (data.activities && data.activities.length > 0) {
         // Show the first non-Spotify activity (Game/App)
         // We filter out custom statuses (type 4) to get actual games
+        if (data.activities[0].id == "custom") {
+          noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
+        } else {
+          
         const activity = data.activities.find(act => act.type !== 4) || data.activities[0];
         noteBubble.innerHTML = `Playing <b>${activity.name}</b>`;
+        }
       } else {
         // Default text if doing nothing
         noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
