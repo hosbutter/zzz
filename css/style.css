@@ -847,7 +847,6 @@ body {
   /* padding: clamp(15px, 5vw, 30px); */
   background: white;
   border-radius: 28px;
-  border: 1px solid rgba(0, 0, 0, 0.03);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
   /* margin: 10px; */
 }
@@ -980,6 +979,7 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 18px;
   align-items: start;
+  padding-bottom: 10px;
 }
 
 /* Each media item is a card with the media and a label */
