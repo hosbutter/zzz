@@ -674,7 +674,9 @@ async function initLanyard(userId) {
         // We filter out custom statuses (type 4) to get actual games
         const activity = data.activities.find(act => act.type !== 4) || data.activities[0];
         noteBubble.innerHTML = `Playing <b>${activity.name}</b>`;
-      } else {
+      } else if (data.activities == "Custom Status") {
+        noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
+      }else {
         // Default text if doing nothing
         noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
       }
