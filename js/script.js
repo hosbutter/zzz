@@ -669,7 +669,7 @@ async function initLanyard(userId) {
       if (data.listening_to_spotify) {
         // Show Spotify status
         noteBubble.innerHTML = `Listening to <b>${data.spotify.song}</b> by <b>${data.spotify.artist}</b>`;
-      } else if (data.activities == "Custom Status") {
+      } else if (data.activities.activities[0].id == "Custom") {
         noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
       } else if (data.activities && data.activities.length > 0) {
         // Show the first non-Spotify activity (Game/App)
