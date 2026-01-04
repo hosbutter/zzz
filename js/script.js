@@ -672,13 +672,8 @@ async function initLanyard(userId) {
       } else if (data.activities && data.activities.length > 0) {
         // Show the first non-Spotify activity (Game/App)
         // We filter out custom statuses (type 4) to get actual games
-        if (data.activities[0].id == "custom") {
-          noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
-        } else {
-          
         const activity = data.activities.find(act => act.type !== 4) || data.activities[0];
         noteBubble.innerHTML = `Playing <b>${activity.name}</b>`;
-        }
       } else {
         // Default text if doing nothing
         noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
