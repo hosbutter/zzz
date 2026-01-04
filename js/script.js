@@ -60,10 +60,10 @@ async function initRotationWheel() {
       .map(
         (item, index) => `
       <div class="gameCards ${index === 0 ? "active" : ""}">
-          <div class="cardBanner" style="background-image:url(${item.image})"></div>
+          <div class="cardBanner" style="background-image:url(${item.img})"></div>
             <div class="cardBody">
               <span class="genreChip">${item.genre}</span>
-              <h3>${item.title}</h3>
+              <h3>${item.name}</h3>
             </div>
       </div>
     `,
@@ -203,12 +203,6 @@ async function initSessionGraph() {
   }
 }
 
-
-
-
-
-
-
 async function initLibrary() {
   const tableBody = document.querySelector("#game-library-table tbody");
   const totalsList = document.querySelector("#totalsList"); // Select the totals container
@@ -219,11 +213,14 @@ async function initLibrary() {
     const data = await response.json();
 
     // 1. Calculate totals using reduce
-    const totals = data.reduce((acc, game) => {
-      acc.achievements += game.achievements || 0;
-      acc.playtime += game.playtime || 0;
-      return acc;
-    }, { achievements: 0, playtime: 0 });
+    const totals = data.reduce(
+      (acc, game) => {
+        acc.achievements += game.achievements || 0;
+        acc.playtime += game.playtime || 0;
+        return acc;
+      },
+      { achievements: 0, playtime: 0 },
+    );
 
     // 2. Update the Totals HTML
     if (totalsList) {
@@ -236,9 +233,10 @@ async function initLibrary() {
     // 3. Generate the Table Rows (Your existing logic)
     tableBody.innerHTML = data
       .map((game) => {
-        const progressPercent = game.totalAchievements > 0 
-          ? Math.round((game.achievements / game.totalAchievements) * 100) 
-          : 0;
+        const progressPercent =
+          game.totalAchievements > 0
+            ? Math.round((game.achievements / game.totalAchievements) * 100)
+            : 0;
 
         return `
         <tr data-platform="${game.platform}" 
@@ -270,15 +268,6 @@ async function initLibrary() {
   }
 }
 
-
-
-
-
-
-
-
-
-
 // async function initLibrary() {
 //   const tableBody = document.querySelector("#game-library-table tbody");
 //   if (!tableBody) return;
@@ -290,10 +279,9 @@ async function initLibrary() {
 //     tableBody.innerHTML = data.map(game => {
 //       const progressPercent = Math.round((game.achievements / game.totalAchievements) * 100);
 
-      
 //       return `
-//         <tr data-platform="${game.platform}" 
-//             data-time="${game.playtime}" 
+//         <tr data-platform="${game.platform}"
+//             data-time="${game.playtime}"
 //             data-progress="${progressPercent}"
 //             onclick="window.open('https://${game.link}', '_blank')"
 //             style="cursor: pointer;">
@@ -315,13 +303,12 @@ async function initLibrary() {
 //     }).join('');
 
 //     // Re-bind sort buttons
-//     initLibraryFilters(); 
+//     initLibraryFilters();
 
 //   } catch (err) {
 //     console.error("Library load failed:", err);
 //   }
 // }
-
 
 function initLibraryFilters() {
   const table =
@@ -367,22 +354,6 @@ function initLibraryFilters() {
     sortTable("time", defaultSortBtn);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // --- Tab Logic (with LocalStorage) ---
 function initInternalTabs() {
@@ -649,7 +620,6 @@ async function initFavorites() {
   }
 }
 
-
 async function initLanyard(userId) {
   const statusIndicator = document.getElementById("statusIndicator");
   const statusDot = document.getElementById("statusDot");
@@ -658,7 +628,7 @@ async function initLanyard(userId) {
   try {
     const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
     const { data } = await response.json();
-    
+
     // 1. Update the two dots
     const status = data.discord_status;
     if (statusIndicator) statusIndicator.className = status;
@@ -672,23 +642,68 @@ async function initLanyard(userId) {
       } else if (data.activities && data.activities.length > 0) {
         // Show the first non-Spotify activity (Game/App)
         // We filter out custom statuses (type 4) to get actual games
-        const activity = data.activities.find(act => act.type !== 4) || data.activities[0];
-        noteBubble.innerHTML = `Playing <b>${activity.name}</b>`;
+        if (data.activities[0].id == "custom") {
+          noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
+        } else {
+          const activity =
+            data.activities.find((act) => act.type !== 4) || data.activities[0];
+          noteBubble.innerHTML = `Playing <b>${activity.name}</b>`;
+        }
       } else {
         // Default text if doing nothing
         noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
       }
     }
-
   } catch (err) {
     console.warn("Lanyard API connection failed:", err);
     if (statusDot) statusDot.className = "offline";
-    if (noteBubble) noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
+    if (noteBubble)
+      noteBubble.innerHTML = `<span style="font-size: 20px">🍓 </span>⋆°｡⋆♡ <br />𝐼𝓃𝓈𝑜𝓂𝓃𝒾𝒶𝒸`;
+  }
+}
+async function loadMediaVault() {
+  const grid = document.getElementById("mediaVaultGrid");
+  if (!grid) return;
+
+  try {
+    const response = await fetch("db/media.json");
+    const mediaData = await response.json();
+
+    grid.innerHTML = mediaData
+      .map((item) => {
+        // Check if it's a YouTube link
+        const isYouTube =
+          item.med.includes("youtube.com") || item.med.includes("youtu.be");
+
+        if (isYouTube) {
+          return `
+                    <div class="mediaItems">
+                        <iframe 
+                            src="${item.med}" 
+                            title="${item.name}" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                        <div class="mediaLabel">${item.name}</div>
+                    </div>`;
+        } else {
+          return `
+                    <div class="mediaItems">
+                        <img src="${item.med}" alt="${item.name}" loading="lazy" />
+                        <div class="mediaLabel">${item.name}</div>
+                    </div>`;
+        }
+      })
+      .join("");
+  } catch (error) {
+    console.error("Error loading Media Vault:", error);
+    grid.innerHTML = "<p>Failed to load media vault.</p>";
   }
 }
 
-
-
+// // Run it when the page loads
+// document.addEventListener("DOMContentLoaded", loadMediaVault);
 
 // --- Controller for Page-Specific Scripts ---
 function initPageSpecificScripts() {
@@ -700,5 +715,6 @@ function initPageSpecificScripts() {
   initTerminal();
   initFavorites();
   initLibrary();
-  initLanyard('1434366878427385886');
+  initLanyard("1434366878427385886");
+  loadMediaVault();
 }
